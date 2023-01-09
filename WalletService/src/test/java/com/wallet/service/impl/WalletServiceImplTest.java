@@ -9,6 +9,8 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -47,9 +49,7 @@ class WalletServiceImplTest {
 	
 	@Test
 	void getBalanceTest(){
-		
 		User user = User.getInstance();
-
 		user.setId(1); 
 		user.setAccountNumber("10001"); 
 		user.setAddress("porur");
@@ -63,7 +63,6 @@ class WalletServiceImplTest {
 		
 		when(userRepo.findById(anyInt())).thenReturn(Optional.of(user));
 		user = userRepo.findById(1).get();
-		
 		assertThat(user.getBalance()).isEqualTo(BigDecimal.valueOf(800.00));
 		
 		assertThat(walletService.getBalance(1)).isEqualTo(String.valueOf(800.00));
@@ -71,9 +70,7 @@ class WalletServiceImplTest {
 
 	@Test
 	void getBalanceTest2(){
-
 		User user = User.getInstance();
-
 		user.setId(2); 
 		user.setAccountNumber("10002"); 
 		user.setAddress("perungudi");
@@ -87,7 +84,6 @@ class WalletServiceImplTest {
 		
 		when(userRepo.findById(anyInt())).thenReturn(Optional.of(user));
 		User u2 = userRepo.findById(2).get();
-		
 		assertThat(u2.getBalance()).isEqualTo(BigDecimal.valueOf(1500.00));
 		
 		assertThat(walletService.getBalance(2)).isEqualTo(String.valueOf(1500.00));
@@ -97,9 +93,7 @@ class WalletServiceImplTest {
 	
 	@Test
 	void depositAmountTest() {
-		
 		User user = User.getInstance();
-
 		user.setId(1); 
 		user.setAccountNumber("10001"); 
 		user.setAddress("porur");
@@ -130,9 +124,7 @@ class WalletServiceImplTest {
 	
 	@Test
 	void depositAmountTest2() {
-
 		User user = User.getInstance();
-
 		user.setId(2); 
 		user.setAccountNumber("10002"); 
 		user.setAddress("perungudi");
@@ -197,7 +189,6 @@ class WalletServiceImplTest {
 	@Test
 	void withdrawAmountTest2() {
 		User user = User.getInstance();
-
 		user.setId(2); 
 		user.setAccountNumber("10002"); 
 		user.setAddress("perungudi");
@@ -224,5 +215,38 @@ class WalletServiceImplTest {
 		verify(transactionsRepo, times(1)).save(transactions);
 		
 		assertThat(walletService.withdrawAmount("10002",100)).isEqualTo("Amount withdrawn");
+	}
+	
+	@Test
+	void transactionsHistory() {
+		List<TransactionsLog> transactions = new ArrayList<>();
+		
+		transactions.add(new TransactionsLog(1,1,"10001",TransactionType.deposit.toString(),BigDecimal.valueOf(100),LocalDateTime.now().toString()));
+		transactions.add(new TransactionsLog(2,1,"10001",TransactionType.withdrawal.toString(),BigDecimal.valueOf(100),LocalDateTime.now().toString()));
+		transactions.add(new TransactionsLog(3,2,"10002",TransactionType.withdrawal.toString(),BigDecimal.valueOf(100),LocalDateTime.now().toString()));
+		
+		when(transactionsRepo.findByUserId(anyInt())).thenReturn(transactions);
+		transactions = transactionsRepo.findByUserId(anyInt());
+		assertThat(transactionsRepo.findByUserId(anyInt())).isEqualTo(transactions);
+		assertThat(walletService.transactionsHistory(1)).isEqualTo(transactions);
+
+	}
+	
+	@Test
+	void transactionsHistory2() {
+		List<TransactionsLog> transactions = new ArrayList<>();
+		
+		transactions.add(new TransactionsLog(1,1,"10001",TransactionType.deposit.toString(),BigDecimal.valueOf(100),LocalDateTime.now().toString()));
+		transactions.add(new TransactionsLog(2,1,"10001",TransactionType.withdrawal.toString(),BigDecimal.valueOf(100),LocalDateTime.now().toString()));
+		transactions.add(new TransactionsLog(3,2,"10002",TransactionType.deposit.toString(),BigDecimal.valueOf(1089),LocalDateTime.now().toString()));
+		transactions.add(new TransactionsLog(3,2,"10002",TransactionType.deposit.toString(),BigDecimal.valueOf(1436),LocalDateTime.now().toString()));
+		transactions.add(new TransactionsLog(3,2,"10002",TransactionType.deposit.toString(),BigDecimal.valueOf(14999),LocalDateTime.now().toString()));
+
+		
+		when(transactionsRepo.findByUserId(anyInt())).thenReturn(transactions);
+		transactions = transactionsRepo.findByUserId(anyInt());
+		assertThat(transactionsRepo.findByUserId(anyInt())).isEqualTo(transactions);
+		assertThat(walletService.transactionsHistory(1)).isEqualTo(transactions);
+
 	}
 }
