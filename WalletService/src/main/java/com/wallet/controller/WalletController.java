@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wallet.service.WalletService;
 
 @RestController
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "/v1/wallet")
 public class WalletController {
 
 	@Autowired
