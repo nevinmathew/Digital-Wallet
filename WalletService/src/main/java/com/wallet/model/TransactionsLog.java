@@ -24,14 +24,14 @@ public class TransactionsLog {
 	private String accountNumber;
 
 	@Column(name = "transaction_type")
-	private String transactionType; //(enum)
+	private String transactionType; // (enum)
 
 	@Column(name = "amount")
 	private BigDecimal amount;
 
 	@Column(name = "transaction_at")
 	private String transactionAt;
-	
+
 //	private TransactionsLog() {}
 //	
 //	//BillPugh Singleton implementation
@@ -42,6 +42,21 @@ public class TransactionsLog {
 //	public static TransactionsLog getInstance() {
 //		return SingletonHelper.INSTANCE;
 //	}
+
+	public TransactionsLog() {
+		super();
+	}
+
+	public TransactionsLog(int id, int userId, String accountNumber, String transactionType, BigDecimal amount,
+			String transactionAt) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.accountNumber = accountNumber;
+		this.transactionType = transactionType;
+		this.amount = amount;
+		this.transactionAt = transactionAt;
+	}
 
 	public int getId() {
 		return id;
@@ -93,12 +108,9 @@ public class TransactionsLog {
 
 	@Override
 	public String toString() {
-		return "TransactionsLog [id=" + id 
-				+ ", userId=" + userId 
-				+ ", accountNumber=" + accountNumber
-				+ ", transactionType=" + transactionType 
-				+ ", amount=" + amount 
-				+ ", transactionAt=" + transactionAt + "]";
+		return "TransactionsLog [id=" + id + ", userId=" + userId + ", accountNumber=" + accountNumber
+				+ ", transactionType=" + transactionType + ", amount=" + amount + ", transactionAt=" + transactionAt
+				+ "]";
 	}
 
 }
