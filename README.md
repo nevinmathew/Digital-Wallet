@@ -5,7 +5,7 @@
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
 - [Acknowledgment](#acknowledgment)
-- 
+
 ## About
 The Wallet Service is a Java application built with Spring Boot, designed to manage user wallets and transactions efficiently. It provides essential functionalities for creating and managing user accounts, depositing and withdrawing money, and maintaining transaction logs. Below are some of the key features of this project:
 
