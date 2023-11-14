@@ -1,13 +1,14 @@
 # DigitalWallet
 
+The Wallet Service is a Java application built with Spring Boot, designed to manage user wallets and transactions efficiently. It provides essential functionalities for creating and managing user accounts, depositing and withdrawing money, and maintaining transaction logs. 
+
 ## Table of Contents
-- [About](#about)
-- [Getting Started](#getting-started)
+- [Features](#features)
 - [Configuration](#configuration)
 - [Acknowledgment](#acknowledgment)
 
-## About
-The Wallet Service is a Java application built with Spring Boot, designed to manage user wallets and transactions efficiently. It provides essential functionalities for creating and managing user accounts, depositing and withdrawing money, and maintaining transaction logs. Below are some of the key features of this project:
+## Features
+Below are some of the key features of this project:
 
 - Create and manage user accounts with detailed information.
 - Perform secure and accurate deposit and withdrawal operations.
