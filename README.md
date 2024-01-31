@@ -1,4 +1,4 @@
-# DigitalWallet
+# Digital-Wallet
 
 This project implements a digital wallet service using Java and the Spring Boot framework. The service allows users to perform various wallet-related operations, including creating and managing user accounts, checking balances, depositing and withdrawing funds, and viewing transaction histories.
 
