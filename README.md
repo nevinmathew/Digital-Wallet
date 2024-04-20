@@ -23,7 +23,4 @@ Below are some of the key features of this project:
 - Easy setup and configuration for rapid deployment.
 
 ## Configuration
-The configuration specifies the database connection details, compression settings, and other properties to manage your application. You can modify these settings as needed.
-
-## Acknowledgment
-I appreciate the open-source community and the developers behind these technologies for making this project possible.
+The configuration specifies the database connection details, compression settings, and other properties to manage your application. You can modify these settings as needed
